@@ -1,0 +1,99 @@
+{{>header}}
+	<div class="container-fluid" id="placeHolder">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4 alert alert-danger hidden" role="alert" id="error"><p class="text-center"></p></div>
+			<form id="voucher_form" class="col-md-4 col-md-offset-4" role="form" method="POST">
+				<div class="form-group">
+				</div>
+				<div class="form-group" id="policyName"></div>
+				<div class="form-group">
+					<label class="control-label" for="period">Validity period</label>
+					<select id="period" name="period" class="form-control">
+					    <option>5 Minutes</option>
+						<option>15 Minutes</option>
+						<option>30 Minutes</option>
+						<option>60 Minutes</option>
+						<option>90 Minutes</option>
+						<option>120 Minutes</option>
+						<option selected>1 Month</option>
+						<option>2 Months</option>
+						<option>3 Months</option>
+						<option>4 Months</option>
+						<option>6 Months</option>
+						<option>1 Year</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<!--label class="control-label" for="cc">Credential wallet</label-->
+					<input type="hidden" class="form-control" name="redentials_wallet_url" id="credentialsWalletURL" placeholder="Credential Wallet" value="{{base_url_credentialwallet}}" readonly data-toggle="tooltip" title="The only credential wallet currently existing is IBM's online demo wallet.">
+						<input type="hidden" class="form-control frm" name="service_url" id="ServiceURL" placeholder="service" value="{{base_url_service}}" readonly data-toggle="tooltip" title="not editable!">
+				</div>
+
+				<div class="form-group">
+					<div id="captcha_div">
+						<!-- Captcha will be placed here -->
+					</div>
+				</div>
+
+
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="" id="iAgree" name="iAgree">
+                        I acknowledge the <a target="_blank" href="{{base_url_idemixdemopage}}/faq#privacy_policy">Privacy Policy</a>
+					</label>
+				</div>
+		  		<div class="form-group">
+		  			<button id="issueBtn" class="btn btn-default btn-primary" type="submit"> &nbsp; Issue &nbsp; </button>
+		  		</div>
+			</form>
+		</div>
+	</div>
+	<div class="modal fade" id="resultPopup" tabindex="-1" role="dialog" aria-labelledby="PopupLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          	<div class="modal-content">
+            	<div class="modal-body">
+
+            	</div>
+            	<div class="modal-footer">
+        			<button type="button" id="modalCloseBtn" class="btn btn-primary" data-dismiss="modal">OK</button>
+      			</div>
+          	</div>
+        </div>
+    </div>
+    <div class="modal fade" id="termsModal" tabindex="-2" role="dialog" aria-labelledby="PopupLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">
+                <h4 class="text-center" id="responseHolder"></h4>
+              </div>
+              <div class="modal-footer">
+              <button type="button" id="modalCloseBtn" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+{{>scripts}}
+
+<script language='JavaScript' type='text/javascript' src='/js/issue_config.js'></script>
+<script language='JavaScript' type='text/javascript' src='/js/issue_helper.js'></script>
+<script>
+	$( document ).ready(function() {
+		var policyName = issue_config.issuer_data.specifications[0].userFriendlyName;
+		// TODO: Need to sanitize the output
+		$( '#policyName' ).html("<h3>" + policyName + "</h3>");
+
+		$( "#voucher_form" ).on( "submit", function( event ) {
+			event.preventDefault();
+            // This hack needs to prevent 'Enter'-btn
+            // input since we are not handling 'submit'
+            // operation preperly
+            issueHelper.startIssuance();
+		});
+
+		$( '#modalCloseBtn' ).on('click', function(event) {
+			window.location.reload();
+		});
+});
+</script>
+{{>footer}}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Movie Service</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='/css/style.css'/>
+    <meta name='viewport' content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mplex-navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img id="logo-navbar" src="/images/moviess.png"></a>
+		  <a class="navbar-brand" href="/">Movie Service</a>
+        </div>
+        <div class="collapse navbar-collapse" id="mplex-navbar">
+          <ul class="nav navbar-nav">
+            <li{{#show}} class="active"{{/show}}><a href="/show">Check access</a></li>
+            <li{{#voucher}} class="active"{{/voucher}}><a href="/issuanceform/voucher">Get Subscription</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>

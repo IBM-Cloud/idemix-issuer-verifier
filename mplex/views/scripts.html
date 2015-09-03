@@ -1,0 +1,24 @@
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<script language='JavaScript' type='text/javascript'>
+	$(document).ready(function() {
+		$('#buy_btn').on('click', function(event){
+			event.preventDefault();
+			$.ajax({
+				url: '/generateissueid',
+				type: 'GET',
+				async: false,
+				success: function(result, status, xhr) {
+					window.open('/issuanceform/' + result,
+						'Provider',
+						'status=0, height=460, width=500');
+				},
+				error: function(result, status, xhr) {
+					window.open('/404');
+				}
+			});
+		});
+
+	});
+</script>

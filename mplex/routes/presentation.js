@@ -1,0 +1,80 @@
+var express = require('express');
+var router = express.Router();
+var servicePresentation = require("../js_modules/service-presentation.js");
+var tools = require("../js_modules/tools.js");
+var addressBook = require("../js_modules/address-book.js");
+
+router.get('/', function(req, res) {
+	res.redirect('/show');
+});
+
+router.get('/show', function(req, res) {
+	var isShow = false;
+	if (req.query.sid) {
+		var result=tools.base64decode(req.query.result);
+		console.log("result="+JSON.stringify(result));
+		isShow=true;
+	}
+
+	var data = {};
+	data.isShow = isShow;
+	if (isShow) {
+		var verifier_url = JSON.parse(result).verifier_url;
+		data.result = req.query.result;
+		data.verifier_url = encodeURIComponent(verifier_url);
+	}
+	data.show = true;
+	data.base_url_credentialwallet = addressBook.getCredentialWalletUrl();
+	res.render('showpage', data);
+});
+
+//save data in idemix service and get link to it
+router.get('/resource/:id', function(req, res) {
+	console.log(policyId);
+	var policyId = decodeURIComponent(req.params.id);
+	var uid = tools.uid();
+
+	var callback_url =
+			req.protocol
+			+ '://'
+			+ req.get('host')
+			+ '/show?sid='
+			+ uid;
+
+	var verifier_identity_url =
+			req.protocol
+			+ '://'
+			+ req.get('host')
+			+ '/resource/'
+			+ encodeURIComponent(policyId)
+			+ '&sid='
+			+ uid;
+
+	servicePresentation.requestPresentation(
+		policyId,
+		verifier_identity_url,
+		callback_url,
+		function(code,result){
+			res.status(code).send(result);
+		});
+});
+
+router.post('/resource/:id', function(req, res) {
+	var uid = req.query.sid;
+	var result = JSON.parse(tools.base64decode(req.body.result));
+
+	if (result.permit != true) {
+		res.status(401).send("Wrong data");
+		return;
+	}
+
+	if(result.permit) {
+		res.status(200).send("Access is granted");
+	} else if(result.deny)	{
+		res.status(403).send("Access is forbidden");
+	}
+});
+
+
+
+module.exports = router;

@@ -1,0 +1,79 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /* background: url("../images/cardboard_flat.png");*/
+  background: rgb(237, 237, 237);
+  padding: 10px 20px 10px 20px;
+}
+
+
+.loginbtn_subtitle {
+	font-size: 75%;
+}
+
+.content {
+	padding-right: 20px;
+	padding-left: 20px;
+}
+
+.item_area{
+	padding: 20px 10px 20px 10px;
+}
+
+.ida_url {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	width: auto;
+	max-width: 30%;
+}
+
+#itemCover {
+	padding-top: 15px;
+	padding-bottom: 10px;
+	width: 60%;
+}
+
+#logo-navbar {
+	margin-top: -5px;
+	height: 30px;
+}
+
+#error {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.navbar {
+	background: #CC3333;
+}
+
+.navbar-default {
+	border: none;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: #fff;
+}
+
+.navbar-default .navbar-brand {
+	color: #fff;
+}
+
+.navbar-default .navbar-brand:hover {
+  color: #333;
+}
+
+.navbar-default .navbar-nav > .active > a {
+	background: #fff;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: #fff;
+}
+
+.panel-body {
+	background-color: #e9e9e9;
+}
+
+#policyToCheck {
+    margin: 10px;
+}
