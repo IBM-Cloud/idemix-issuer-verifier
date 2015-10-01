@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var serviceIssuance = require("../js_modules/service-issuance.js");
-var addressBook = require("../js_modules/address-book.js");
-var util = require('util');
+var express = require('express'),
+	router = express.Router(),
+	serviceIssuance = require("../js_modules/service-issuance.js"),
+	addressBook = require("../js_modules/address-book.js"),
+	util = require('util');
 
 // Request to Crypto service to store credentail policy data
 // and get back link to this data for wallet
@@ -14,7 +14,7 @@ router.get('/service/issuance', function(req, res) {
 	// Collect attributes that came from the issuance form from UI
 	var attrs = req.query.attrs;
 
-	if(policyId == undefined || attrs == undefined) {
+	if(policyId === undefined || attrs === undefined) {
 		res.status(500).send('Policy ID or issuance attribute was not properly provided');
 		return;
 	}
@@ -34,12 +34,13 @@ router.get('/service/issuance', function(req, res) {
 		attrs,
 		encodeURIComponent(issuer_success_callback_url),
 		encodeURIComponent(issuer_fail_callback_url),
-		function (code,result){
-			if (code) {
-				res.send(code, result);
+		function (error, result, code) {
+			if(error !== null){
+				res.status(500).send(error);
+			} else {
+				res.status(code).send(result);
 			}
-			res.send(200, result);
-	});
+		});
 });
 
 // Show success result page for mobile wallet
@@ -56,7 +57,7 @@ router.get('/issuance/fail', function(req, res) {
 // will be passed to the 'service/issuance' route (see above).
 router.get('/issuanceform/voucher', function(req, res){
 	var form_data = {
-		base_url_service: addressBook.getIssuanceServiceHostnameUrl(),
+		base_url_service: addressBook.getCryptoServiceDetails().url,
 		base_url_credentialwallet: addressBook.getCredentialWalletUrl(),
 	};
 	res.render('voucher', form_data);

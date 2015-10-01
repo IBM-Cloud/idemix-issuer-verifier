@@ -5,33 +5,26 @@
 // store default variable values
 //
 
-var addressBook = new Object();
+var addressBook = {};
 var url = require('url');
 
-addressBook.getIssuanceServiceHostnameDetails = function() {
+addressBook.getCryptoServiceDetails = function() {
 	// service in Bluemix as a service
 	if (process.env.VCAP_SERVICES) {
 		var services = JSON.parse(process.env.VCAP_SERVICES);
 		return {
-			host: url.parse(services.idemixservice[0].credentials.url,true).host
+			url: services.idemixservice[0].credentials.url,
+			userid: services.idemixservice[0].credentials.userid,
+			password: services.idemixservice[0].credentials.password
 		};
 	}
 	//local service
 	else {
 		return {
-			host: 'localhost',
-			port:'3004'
+			url: 'http://localhost:3004',
+			userid: "havvbyexlr9o4wtlvm8rc76fmxbvwsnvnu",
+			password: "holdn1n54sw0mrixuffgwvrl88upqd93cl"
 		};
-	}
-};
-
-addressBook.getIssuanceServiceHostnameUrl = function() {
-
-	if (process.env.VCAP_SERVICES) {
-		var services = JSON.parse(process.env.VCAP_SERVICES);
-		return "https://"+url.parse(services.idemixservice[0].credentials.url,true).host;
-	} else {
-		return 'http://localhost:3004';
 	}
 };
 
@@ -42,24 +35,6 @@ addressBook.getCredentialWalletUrl = function() {
 		//local wallet
 	} else {
 		return 'http://localhost:3001';
-	}
-};
-
-
-addressBook.getUserCredentialsDetails = function() {
-	//get user credentials from Bluemix service
-	if (process.env.VCAP_SERVICES) {
-		var services = JSON.parse(process.env.VCAP_SERVICES);
-		return {
-			login: services.idemixservice[0].credentials.userid,
-			password: services.idemixservice[0].credentials.password
-		}
-	} else {
-		//some default user credentials
-		return {
-			login: "fopm95huw14mmgs3o8ymyyh37f78qo0db9",
-			password: "gfiz13iuugbocy15mnx15sxy7ml8cgnetj"
-		}
 	}
 };
 

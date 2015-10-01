@@ -1,6 +1,5 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 
 var issuance = require('./routes/issuance');
@@ -8,15 +7,9 @@ var presentation = require('./routes/presentation');
 
 var app = express();
 if (process.env.VCAP_APP_HOST) {
-    app.enable('trust proxy'); // required when app is running on proxy (such as Bluemix) so that, e.g., req.protocol uses the info from the X-Forwarded-Proto header
+	require('loganalysis');
+	app.enable('trust proxy'); // required when app is running on proxy (such as Bluemix) so that, e.g., req.protocol uses the info from the X-Forwarded-Proto header
 }
-
-/*
-* Logging into file
-*
-winston.handleExceptions(new winston.transports.File({ filename: './log/exceptions.log' }));
-winston.add(winston.transports.File, { filename: './log/errors.log' });
-*/
 
 // view engine setup
 app.engine('html', require('hogan-express'));
@@ -24,16 +17,15 @@ app.enable('view cache');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 app.set('partials', {
-    header: 'header',
-    footer: 'footer',
-    voucher: 'voucher',
+	header: 'header',
+	footer: 'footer',
+	voucher: 'voucher',
 	scripts: 'scripts',
-    error: 'error'
+	error: 'error'
 });
 
 app.set('env', 'development');
 
-app.use(favicon(__dirname + '/public/images/mss.ico'));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: false }));
 
@@ -66,5 +58,5 @@ var port = (process.env.VCAP_APP_PORT || 3005);
 
 // Start server
 app.listen(port, host, function(){
-    console.log('Server started at ' + host + ':' + port);
+	console.log('Server started at ' + host + ':' + port);
 });

@@ -14,9 +14,9 @@ The following instructions explain how to copy the contents of this IBM DevOps S
 
 Before starting, consider a suitable application name and the URL for your IBM Identity Mixer sample client. The name you choose must be unique so that it doesn't clash with other developers' mybluemix.net app names.
 
-    Ensure that you have an IBM Bluemix account and the capability to deploy applications to the IBM Bluemix environment.
+Ensure that you have an IBM Bluemix account and the capability to deploy applications to the IBM Bluemix environment.
 
-    Ensure that you have an IBM DevOps Services account and the capability to manage an IBM DevOps Services project.
+Ensure that you have an IBM DevOps Services account and the capability to manage an IBM DevOps Services project.
 
     Login to IBM DevOps Services using your IBM DevOps Services account.
         Click EXPLORE

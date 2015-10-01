@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var servicePresentation = require("../js_modules/service-presentation.js");
-var tools = require("../js_modules/tools.js");
-var addressBook = require("../js_modules/address-book.js");
+var express = require('express'),
+	router = express.Router(),
+	servicePresentation = require("../js_modules/service-presentation.js"),
+	tools = require('idmx-tools').Tools,
+	addressBook = require("../js_modules/address-book.js");
 
 router.get('/', function(req, res) {
 	res.redirect('/show');
@@ -10,10 +10,11 @@ router.get('/', function(req, res) {
 
 router.get('/show', function(req, res) {
 	var isShow = false;
+	var result;
 	if (req.query.sid) {
-		var result=tools.base64decode(req.query.result);
-		console.log("result="+JSON.stringify(result));
-		isShow=true;
+		result = tools.base64decode(req.query.result);
+		console.log("result=" + JSON.stringify(result));
+		isShow = true;
 	}
 
 	var data = {};
@@ -35,27 +36,31 @@ router.get('/resource/:id', function(req, res) {
 	var uid = tools.uid();
 
 	var callback_url =
-			req.protocol
-			+ '://'
-			+ req.get('host')
-			+ '/show?sid='
-			+ uid;
+			req.protocol +
+			'://' +
+			req.get('host') +
+			'/show?sid=' +
+			uid;
 
 	var verifier_identity_url =
-			req.protocol
-			+ '://'
-			+ req.get('host')
-			+ '/resource/'
-			+ encodeURIComponent(policyId)
-			+ '&sid='
-			+ uid;
+			req.protocol +
+			'://' +
+			req.get('host') +
+			'/resource/' +
+			encodeURIComponent(policyId) +
+			'&sid=' +
+			uid;
 
 	servicePresentation.requestPresentation(
 		policyId,
 		verifier_identity_url,
 		callback_url,
-		function(code,result){
-			res.status(code).send(result);
+		function (error, result, code) {
+			if(error !== null){
+				res.status(500).send(error);
+			} else {
+				res.status(code).send(result);
+			}
 		});
 });
 
@@ -63,7 +68,7 @@ router.post('/resource/:id', function(req, res) {
 	var uid = req.query.sid;
 	var result = JSON.parse(tools.base64decode(req.body.result));
 
-	if (result.permit != true) {
+	if (result.permit !== true) {
 		res.status(401).send("Wrong data");
 		return;
 	}

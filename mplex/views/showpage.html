@@ -1,14 +1,14 @@
 {{>header}}
 <div class='content'>
-  <div class="container-fluid">
-  	<div class="row">
-    	<div class="col-md-4 col-md-offset-4">
-            <div class="alert alert-success hidden" id="msg"></div>
-			<form id="policyToCheck">
-			</form>
-  	  </div>
-    </div>
-  </div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<div class="alert alert-success hidden" id="msg"></div>
+				<form id="policyToCheck">
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
 
 {{>scripts}}
@@ -17,55 +17,56 @@
 <script language='JavaScript' type='text/javascript' src='/js/presentation_helper.js'></script>
 <script language='JavaScript' type='text/javascript'>
 
-  $( document ).ready(function() {
+$( document ).ready(function() {
 	var policyCount = verifier_config.verifier_data.length;
 	for (i = 0; i < policyCount; i++) {
+		//var localId = encodeURIComponent(verifier_config.verifier_data[i].uid);
 		var localId = verifier_config.verifier_data[i].uid;
-    	var radioBtn =
+		var radioBtn =
 		'<div class="radio">' +
-			'<label>' +
-				'<input type="radio" name="policyRadios" id="policyRow' + i +'" value="' +
-					localId +
-				'">' +
-				verifier_config.verifier_data[i].friendlyName +
-			'</label>' +
+		'<label>' +
+		'<input type="radio" name="policyRadios" id="policyRow' + i +'" value="' +
+		localId +
+		'">' +
+		verifier_config.verifier_data[i].friendlyName +
+		'</label>' +
 		'</div>';
-    	$(radioBtn).appendTo('#policyToCheck');
+		$(radioBtn).appendTo('#policyToCheck');
 	}
 
 	var element =
 	'<div class="form-group">' +
-		'<label for="walletURL">Credential Wallet URL</label>' +
-		'<input type="edit" class="form-control" id="cwURL" value="{{base_url_credentialwallet}}">' +
+	'<label for="walletURL">Credential Wallet URL</label>' +
+	'<input type="edit" class="form-control" id="cwURL" value="{{base_url_credentialwallet}}">' +
 	'</div>';
 	$(element).appendTo('#policyToCheck');
 
 	element =
 	'<div class="text-center"><button id="loginbtn" class="btn btn-success btn-group btn-lg">' +
-		'<span class="glyphicon glyphicon-play"></span>Check you access <br><span class="loginbtn_subtitle">by using your Credential Wallet</span>' +
+	'<span class="glyphicon glyphicon-play"></span>Check you access <br><span class="loginbtn_subtitle">by using your Credential Wallet</span>' +
 	'</button></div>';
 	$(element).appendTo('#policyToCheck');
 
-    if ({{isShow}}){
+	if ({{isShow}}) {
 		presentationHelper.requestResourceCode(decodeURIComponent('{{verifier_url}}'),'{{result}}');
-	}  else {
-	    $('#policyToCheck').on('submit', function(e){
-	    	e.preventDefault();
+	} else {
+		$('#policyToCheck').on('submit', function(e){
+			e.preventDefault();
 			var formData = $( this ).serialize();
-			var policyId = undefined;
+			var policyId;
 			var searchIdx = formData.search("policyRadios=");
 			if(searchIdx >= 0){
 				policyId = formData.substring(searchIdx + 13);
 			}
-		console.log(policyId);
+			console.log(policyId);
 			var input_ctrl = $('#cwURL')[0];
 			if(input_ctrl != undefined && policyId != undefined) {
 				// Add URL checking in here
 				presentationHelper.accessResource(input_ctrl.value, policyId);
 			}
-	    });
+		});
 	}
-  });
+});
 
 </script>
 {{>footer}}

@@ -1,4 +1,4 @@
-var issueHelper = new Object();
+var issueHelper = {};
 
 issueHelper.startIssuance = function() {
 	var policyId = issue_config.issuer_data.specifications[0].policyUid;
@@ -48,9 +48,9 @@ issueHelper.startIssuance = function() {
 			//checking whether web wallet window was closed
 			var timer = window.setInterval(function() {
 				try {
-					if (loginPopup == null || loginPopup.closed) {
+					if (loginPopup === null || loginPopup.closed) {
 						clearInterval(timer);
-						if(issueHelper.isSuccess != true) {
+						if(issueHelper.isSuccess !== true) {
 							issueHelper.showError("Sorry, something went wrong. Please try again!");
 						}
 					}
@@ -72,7 +72,7 @@ issueHelper.startIssuance = function() {
 						}
 					}
 				}
-			}
+			};
 			$( "#issueBtn" ).addClass('disabled');
 			$( '#credentialsWalletURL' ).prop("readonly",true);
 		},
@@ -109,7 +109,7 @@ issueHelper.showResultMessage = function(type, message) {
 			"</div>"
 		);
 	}
-}
+};
 
 issueHelper.showError = function(message) {
 	issueHelper.showResultMessage("error", message);
