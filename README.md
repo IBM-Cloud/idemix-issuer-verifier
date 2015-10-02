@@ -5,25 +5,67 @@ This sample application demonstrates how the IBM Identity Mixer service can enab
 
 Read and follow the instructions provided below. They are intended to help you copy the files in this IBM DevOps Service environment to your own, and assist you to deploy your own IBM Identity Mixer Issuer application to your own IBM Bluemix space.
 
-A running implementation of the sample application is already available at https://egov1.mybluemix.net/ for testing and demonstration.
-The Identity Mixer Issuer Sample Application
+A running implementation of the sample application is already available at https://mplex1.mybluemix.net/ for testing and demonstration.
 
-The sample application source code provided in this project can help you write your own client application to leverage the Identity Mixer service's capabilities.
+The sample application source code provided in this project can help you write and deploy your own client application to leverage the Identity Mixer service's capabilities.
 
-The following instructions explain how to copy the contents of this IBM DevOps Services project to your own IBM DevOps Services project, then build and deploy the sample application to your own Bluemix environment. If you are experienced at editing, building, committing and deploying IBM DevOps Services projects to IBM Bluemix, you can likely streamline some of the instruction below.
+The following instructions explain how to copy the contents of this IBM DevOps Services project to your own IBM DevOps Services project, then build and deploy the sample application to your own Bluemix environment. 
+If you are experienced at editing, building, committing and deploying IBM DevOps Services projects to IBM Bluemix, you can likely streamline some of the instruction below.
 
 Before starting, consider a suitable application name and the URL for your IBM Identity Mixer sample client. The name you choose must be unique so that it doesn't clash with other developers' mybluemix.net app names.
 
 Ensure that you have an IBM Bluemix account and the capability to deploy applications to the IBM Bluemix environment.
 
+    Create two instances of the IBM Identity Mixer experimental service - one for issuance and one for verification:
+        If you haven't already done so, login to IBM Bluemix.
+        Create an empty Node.js application.
+        Click Use Services or APIs.
+        Go to the Bluemix Labs catalog (you have to scroll down to the bottom ob the Bluemix catalog).
+		Click "IBM Identity Mixer" from within the "Security" section of the BluemixLabs catalog.
+        Configure the Identity Mixer service in the "Add Service" section of the page:
+            Select the Node.js APP that you just created to which to bind the service.
+            Provide a suitable unique name for your Identity Mixer service if you'd prefer something another than the one suggested for you.
+            The service is provided for free, so there is no plan to select.
+            Having ensured the TERMS were acceptable to you, click CREATE.
+            Click OK if Bluemix requests to restart your application.
+
+    Setup your Issuer service:
+        From the IBM Bluemix Dashboard, locate and click your recently-deployed Bluemix Node.js application to which you bound your new Identity Mixer issuer service.
+        Within the Services section of the new Client application, click its Identity Mixer issuer service--the one you just bound to that Client application. 
+		Choose the ISSUER role and press START SETUP.
+        Choose a unique name for the Issuer (it must be unique within Bluemix not only your organization)
+        Add *Credential specification(s)* (a list of the attributes that are contained in a credential) that will be issued by your application by selecting one of the options below:
+			Select one of the existing specifications that are non-editable.
+			Craft your own credential specification:
+				Choose a unique name of the Credential Specification
+				Specify a link to the image that will be an icon displayed in the user's credential wallet. You can also use the default image.
+				Add Attributes to you specification by clicking ADD ATTRIBUTE, specifying a Human Readable Name and choosing a Data Type for each attribute
+		When you are done, press NEXT.
+		After Issuer crytographic keys are generated (this might take up to 3 min because of the key length - and is only done once) a JSON file with all configuration Information will be displayed.
+		You can always see this file when selecting the service from the dashboard.
+			
+	Setup your Verifier service:
+        From the IBM Bluemix Dashboard, locate and click your recently-deployed Bluemix Node.js application to which you bound your new Identity Mixer issuer service.
+        Within the Services section of the new Client application, click its Identity Mixer issuer service--the one you just bound to that Client application. 
+		Choose the VERIFIER role and press START SETUP.
+        Choose a unique name for the Verifier (it must be unique within Bluemix not only your organization)
+        Add *Credential specification(s)* (a list of the attributes that are contained in a credential) that will be issued by your application by selecting one of the options below:
+			Select one of the existing specifications that are non-editable.
+			Craft your own credential specification:
+				Choose a unique name of the Credential Specification
+				Specify a link to the image that will be an icon displayed in the user's credential wallet. You can also use the default image.
+				Add Attributes to you specification by clicking ADD ATTRIBUTE, specifying a Human Readable Name and choosing a Data Type for each attribute
+		When you are done, press NEXT.
+		After Issuer crytographic keys are generated (this might take up to 3 min because of the key length - and is only done once) a JSON file with all configuration Information will be displayed.
+		You can always see this file when selecting the service from the dashboard.
+
 Ensure that you have an IBM DevOps Services account and the capability to manage an IBM DevOps Services project.
 
     Login to IBM DevOps Services using your IBM DevOps Services account.
         Click EXPLORE
-        Search for "Identity Mixer" (without the quotes).
-        Select the "idemix | Issuer" project.
+        Search for "idemix" (without the quotes).
+        Select the "idemix | verifier" project.
         To copy the Issuer project to your own new DevOps project:
-            Click EDIT CODE.
             Click FORK.
             Select a suitable name for your new DevOps Services project. Decide whether to make it public or private, or add features for Scrum development.
             Check Deploy to Bluemix and select your Bluemix Organization and Bluemix Space. If you are advised that you require a Bluemix account, uncheck the Deploy to Bluemix option.
@@ -72,34 +114,7 @@ Ensure that you have an IBM DevOps Services account and the capability to manage
                 Wait until a "Deployment Success" message and a green tick are displayed in your deployer area.
                 You should see that your application has been deployed, and is running.
 
-    Create an instance of the IBM Identity Mixer experimental service:
-        If you haven't already done so, login to IBM Bluemix.
-        Check that your Issuer sample application is shown, has been deployed successfully, and is running.
-        On your application's OVERVIEW page, under Development Services, click ADD A SERVICE.
-        Go to the BluemixLabs catalog (you have to scroll down to the bottom ob the Bluemix catalog).
-		Click "Identity Mixer" from within the "Security" section of the BluemixLabs catalog.
-        Configure the Identity Mixer service in the "Add Service" section of the page:
-            Select the APP that you just deployed to which to bind the service.
-            Provide a suitable unique name for your Identity Mixer service if you'd prefer something another than the one suggested for you.
-            The service is provided for free, so there is no plan to select.
-            Having ensured the TERMS were acceptable to you, click CREATE.
-            Click OK if Bluemix requests to restart your application.
 
-    Setup your Issuer service:
-        From the IBM Bluemix Dashboard, locate and click your recently-deployed Bluemix Client application to which you bound your new Identity Mixer service.
-        Within the Development Services section of the new Client application, click its Identity Mixer service--the one you just bound to that Client application. 
-        Choose the unique name for the Issuer (it must be unique within Bluemix not only your organization)
-        Define *Credential specification(s)* (a list of the attributes that are contained in a credential) by selecting one of the options below:
-			Select one of the existing specifications that are non-editable:
-			Craft your own credential specification by Choosing a unique name of the 
-			
-	Setup your Verifier service:
-        From the IBM Bluemix Dashboard, locate and click your recently-deployed Bluemix Client application to which you bound your new Identity Mixer service.
-        Within the Development Services section of the new Client application, click its Identity Mixer service--the one you just bound to that Client application. 
-        Choose the unique name for the Issuer (it must be unique within Bluemix not only your organization)
-        Define *Credential specification(s)* (a list of the attributes that are contained in a credential) by selecting one of the options below:
-			Select one of the existing specifications that are non-editable:
-			Craft your own credential specification by Choosing a unique name of the 
             
 
 Note:
