@@ -17,7 +17,7 @@ Before starting, consider a suitable application name and the URL for your IBM I
 
 Ensure that you have an IBM Bluemix account and the capability to deploy applications to the IBM Bluemix environment.
 
-## Create two instances of the IBM Identity Mixer experimental service - one for issuance and one for verification:
+## I. Create two instances of the IBM Identity Mixer experimental service - one for issuance and one for verification:
 1. Login to IBM Bluemix.
 1. Click Use Services or APIs.
 1. Go to the Bluemix Labs catalog (you have to scroll down to the bottom ob the Bluemix catalog).
@@ -31,7 +31,7 @@ Ensure that you have an IBM Bluemix account and the capability to deploy applica
 1. Having ensured the TERMS were acceptable to you, click CREATE.
 1. Click OK if Bluemix requests to restart your application.
 
-## Configuring the service
+## II. Configure the service
 
 ### Acting as Issuer
 Step-by-step instructions on how to act as issuer:
@@ -78,7 +78,7 @@ Step-by-step instructions on how to act as Verifier:
 ![](images/verifier_json.jpg)
 1. You can always see this file when selecting the service from the dashboard.
 
-## Fork and redeploy sample application 
+## III. Fork and redeploy sample application 
 
 Ensure that you have an IBM DevOps Services account and the capability to manage an IBM DevOps Services project.
 
