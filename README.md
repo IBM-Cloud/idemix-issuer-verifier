@@ -1,4 +1,4 @@
-# Getting started with the Identity Mixer Issuer sample application
+# Getting started with the Identity Mixer sample application
 
 ## Introduction
 
@@ -71,7 +71,7 @@ Step-by-step instructions on how to act as Verifier:
   1. OR Craft your own credential presentation policy by choosing "Create New Policy":         
 ![](images/create_new_policy.jpg)
       * Specify a unique human-readable name of the policy.
-      * Define predicates by by clicking ADD PREDICATE, choosing the credential issuer, credential type, attribute, operator, and a constant:        
+      * Define predicates by clicking ADD PREDICATE, choosing the credential issuer, credential type, attribute, operator, and defining a constant:        
 ![](images/editing_policy.jpg)
 1. When you are done, press NEXT.
 1. After the presentation policies are generated a JSON file with the information about the policies will be displayed:          
