@@ -1,6 +1,6 @@
-Get started with the Identity Mixer Issuer sample application
+# Getting started with the Identity Mixer Issuer sample application
 
-Introduction
+## Introduction
 
 This sample application demonstrates how the IBM Identity Mixer service can enable privacy-preserving authentication for your customers.
 
@@ -17,9 +17,7 @@ Before starting, consider a suitable application name and the URL for your IBM I
 
 Ensure that you have an IBM Bluemix account and the capability to deploy applications to the IBM Bluemix environment.
 
-1. Create two instances of the IBM Identity Mixer experimental service - one for issuance and one for verification:
-## Adding the service
-
+## Create two instances of the IBM Identity Mixer experimental service - one for issuance and one for verification:
 1. Login to IBM Bluemix.
 1. Click Use Services or APIs.
 1. Go to the Bluemix Labs catalog (you have to scroll down to the bottom ob the Bluemix catalog).
@@ -33,7 +31,9 @@ Ensure that you have an IBM Bluemix account and the capability to deploy applica
 1. Having ensured the TERMS were acceptable to you, click CREATE.
 1. Click OK if Bluemix requests to restart your application.
 
-## Acting as Issuer
+## Configuring the service
+
+### Acting as Issuer
 Step-by-step instructions on how to act as issuer:
 1. From the IBM Bluemix Dashboard, locate and click your Bluemix Node.js application to which you bound the Identity Mixer service.
 1. Within the Services section of the your application, click its Identity Mixer issuer service. The Identity Mixer Setup Console will be loaded: 
@@ -55,7 +55,7 @@ Step-by-step instructions on how to act as issuer:
 ![](images/issuer_json.jpg)
 1. You can always see this file when selecting the service from the dashboard.
 
-## Acting as Verifier
+### Acting as Verifier
 Preparation: make sure that the access control is in place, i.e. each resource is assigned an access policy. 
 
 Step-by-step instructions on how to act as Verifier:
@@ -77,6 +77,8 @@ Step-by-step instructions on how to act as Verifier:
 1. After the presentation policies are generated a JSON file with the information about the policies will be displayed:          
 ![](images/verifier_json.jpg)
 1. You can always see this file when selecting the service from the dashboard.
+
+## Fork and redeploy sample application 
 
 Ensure that you have an IBM DevOps Services account and the capability to manage an IBM DevOps Services project.
 
@@ -135,12 +137,9 @@ Ensure that you have an IBM DevOps Services account and the capability to manage
   1. Drag the build created in step 6 to the "Drop a build to deploy" area.
        1. Wait until a "Deployment Success" message and a green tick are displayed in your deployer area.
        1. You should see that your application has been deployed, and is running.
-
-
-            
+      
 
 Note:
 
-    If the application fails to build and/or deploy, review the steps above to remedy the issue.
-
-    In the future, whenever you commit and push any changes to the code, the application should redeploy automatically to Bluemix. Click BUILD & DEPLOY to verify the deployment status, and to locate the link to your application.
+1. If the application fails to build and/or deploy, review the steps above to remedy the issue.
+1. In the future, whenever you commit and push any changes to the code, the application should redeploy automatically to Bluemix. Click BUILD & DEPLOY to verify the deployment status, and to locate the link to your application.
