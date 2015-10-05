@@ -25,10 +25,10 @@ Ensure that you have an IBM Bluemix account and the capability to deploy applica
 ![](images/choose.jpg)
 1. Configure the Identity Mixer service in the "Add Service" section of the page:    
 ![](images/add.jpg)
-1. Select your Node.js application to bind the service to.
-1. Provide a suitable unique name for your Identity Mixer service if you'd prefer something another than the one suggested for you.
-1. The service is provided for free, so there is no plan to select.
-1. Having ensured the TERMS were acceptable to you, click CREATE.
+  1. Select your Node.js application to bind the service to.
+  1. Provide a suitable unique name for your Identity Mixer service if you'd prefer something another than the one suggested for you.
+  1. The service is provided for free, so there is no plan to select.
+  1. Having ensured the TERMS were acceptable to you, click CREATE.
 1. Click OK if Bluemix requests to restart your application.
 
 ## II. Configure the service
