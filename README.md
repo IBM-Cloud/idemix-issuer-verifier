@@ -8,7 +8,7 @@ More information and demonstration of the Identity
 
 Read and follow the instructions provided below. They are intended to help you copy the files in this IBM DevOps Service environment to your own, and assist you to deploy your own IBM Identity Mixer Issuer application to your own IBM Bluemix space.
 
-This sample code is released under the Apache 2.0 license (see License.txt) in the root folder.
+This sample code is released under the Apache 2.0 license (see License.txt) in the root folder. Please refer to the package.json for the dependencies. 
 
 A running implementation of the sample application is already available at https://mplex1.mybluemix.net/ for testing and demonstration.
 
