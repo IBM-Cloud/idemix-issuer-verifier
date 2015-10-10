@@ -10,7 +10,7 @@ Read and follow the instructions provided below. They are intended to help you c
 
 This sample code is released under the Apache 2.0 license (see License.txt) in the root folder. Please refer to the package.json for the dependencies. 
 
-A running implementation of the sample application is already available at https://mplex1.mybluemix.net/ for testing and demonstration.
+A running implementation of the sample application is already available at https://idemix-issuer-verifier.mybluemix.net/ for testing and demonstration.
 
 This application is an example enable privacy-preserving authentication for your  service's capabilities.
 

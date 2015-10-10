@@ -1,7 +1,7 @@
 applications:
 - disk_quota: 1024M
-  host: mplex
-  name: mplex
+  host: idemix-issuer-verifier
+  name: idemix-issuer-verifier
   path: .
   command: node app.js
   domain: mybluemix.net
