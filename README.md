@@ -6,6 +6,8 @@ This sample application demonstrates how the IBM Identity Mixer service can enab
 
 Read and follow the instructions provided below. They are intended to help you copy the files in this IBM DevOps Service environment to your own, and assist you to deploy your own IBM Identity Mixer Issuer application to your own IBM Bluemix space.
 
+This sample code is released under the Apache 2.0 license (see License.txt) in the root folder.
+
 A running implementation of the sample application is already available at https://mplex1.mybluemix.net/ for testing and demonstration.
 
 This application is an example enable privacy-preserving authentication for your  service's capabilities.
