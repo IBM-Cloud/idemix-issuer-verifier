@@ -4,7 +4,7 @@
 
 This sample application demonstrates how the IBM Identity Mixer service can enable privacy-preserving authentication for your customers.
 
-More information and demonstration of the Identity
+More information and demonstration of the Identity Mixer technology is available [here](https://idemixdemo.mybluemix.net).
 
 Read and follow the instructions provided below. They are intended to help you copy the files in this IBM DevOps Service environment to your own, and assist you to deploy your own IBM Identity Mixer Issuer application to your own IBM Bluemix space.
 
@@ -13,6 +13,12 @@ This sample code is released under the Apache 2.0 license (see License.txt) in t
 A running implementation of the sample application is already available at https://idemix-issuer-verifier.mybluemix.net/ for testing and demonstration.
 
 This application is an example enable privacy-preserving authentication for your  service's capabilities.
+
+Currently the Identity Mixer Service is running as experimental and supports only Node.js™ applications. 
+This constraint is mainly due to the [credential wallet sample application](https://idmx-wallet.mybluemix.net/) that is used together with the service. 
+A credential wallet account is required to use both issunce and verification services. 
+While the service is experimental we ask to NOT store any personal data in the sample credential wallet.
+Since the core service offers REST API, other runtimes will be also supported when migrating to Beta and GA.
 
 The following instructions explain how to copy the contents of this IBM DevOps Services project to your own IBM DevOps Services project, then build and deploy the sample application to your own Bluemix environment. 
 If you are experienced at editing, building, committing and deploying IBM DevOps Services projects to IBM Bluemix, you can likely streamline some of the instruction below.
@@ -103,7 +109,7 @@ Ensure that you have an IBM DevOps Services account and the capability to manage
        1. Click EDIT CODE.
 1. Edit the manifest.yml file. If you are experienced with editing this type of file, edit it as you see fit. Otherwise:
   1. Click manifest.yml to edit its contents.
-  1. Change both the host and name parameters to the unique application name (without any quotes) you chose before you started.
+  1. Change both the host and name parameters to the unique application name (without any quotes) you chose before you started and the service name to the name of the Identity Mixer service that you have added.
   1. Save the manifest.yml file by selecting File>Save from the menu.
 1. Edit the configuration files:
   1. Copy the content of the issuer JSON file into "public/js/issue_config.js" file.
