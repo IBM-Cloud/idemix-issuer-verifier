@@ -14,42 +14,46 @@ A running implementation of the sample application is already available at https
 
 This application is an example enable privacy-preserving authentication for your  service's capabilities.
 
-Currently the Identity Mixer Service is running as experimental and supports only Node.js™ applications. 
+Currently the Identity Mixer Service is running as experimental and works with Node.js™ applications. 
 This constraint is mainly due to the [credential wallet sample application](https://idmx-wallet.mybluemix.net/) that is used together with the service. 
-A credential wallet account is required to use both issunce and verification services. 
-While the service is experimental we ask to NOT store any personal data in the sample credential wallet.
-Since the core service offers REST API, other runtimes will be also supported when migrating to Beta and GA.
+A credential wallet account is required to use both issuance and verification services. 
+While the service is experimental we ask users to NOT store any personal data in the sample credential wallet.
+Since the core service offers REST API, other runtimes will be also supported when migrating to Beta and GA. 
+The credential wallet will be released as a mobile application in the beginning of 2016.
+
+If you have any questions, please contact us at idemix@zurich.ibm.com.
+
+Before starting, consider a suitable application name and the URL for your IBM Identity Mixer sample client. The name you choose must be unique so that it doesn't clash with other developers' mybluemix.net app names.
+Please refer to the [Node.js™ documentation](https://www.ng.bluemix.net/docs/starters/nodejs/index.html) for the information on how to create an application in your Bluemix space.  
 
 The following instructions explain how to copy the contents of this IBM DevOps Services project to your own IBM DevOps Services project, then build and deploy the sample application to your own Bluemix environment. 
 If you are experienced at editing, building, committing and deploying IBM DevOps Services projects to IBM Bluemix, you can likely streamline some of the instruction below.
-
-Before starting, consider a suitable application name and the URL for your IBM Identity Mixer sample client. The name you choose must be unique so that it doesn't clash with other developers' mybluemix.net app names.
 
 Ensure that you have an IBM Bluemix account and the capability to deploy applications to the IBM Bluemix environment.
 
 ## I. Create two instances of the IBM Identity Mixer experimental service - one for issuance and one for verification:
 1. Login to IBM Bluemix.
-1. Click Use Services or APIs.
-1. Go to the Bluemix Labs catalog (you have to scroll down to the bottom ob the Bluemix catalog).
+1. Click Use Services or APIs from the Dashboard.
+1. Go to the Bluemix Labs catalog (you have to scroll down to the bottom of the Bluemix catalog).
 1. Click "IBM Identity Mixer" from within the "Security" section of the BluemixLabs catalog:      
-![](images/choose.jpg)
+![IBM Identity Mixer for Bluemix in Bluemix Labs Catalog](images/choose.jpg)
 1. Configure the Identity Mixer service in the "Add Service" section of the page:    
-![](images/add.jpg)
-  1. Select your Node.js application to bind the service to.
-  1. Provide a suitable unique name for your Identity Mixer service if you'd prefer something another than the one suggested for you.
-  1. Currently the service is provided for free, so there is no plan to select.
-  1. Having ensured the TERMS were acceptable to you, click CREATE.
+![Adding Identity Mixer ](images/add.jpg)
+  1. Select your Node.js™ application to bind the service to.
+  1. Provide a suitable unique name for your Identity Mixer service if you prefer something another than the one suggested for you.
+  1. The service is provided for free, so there is no plan to select.
+  1. Having ensured the TERMS are acceptable to you, click CREATE.
 1. Click OK if Bluemix requests to restart your application.
 
 ## II. Configure the service
 
 ### Step-by-step instructions on how to setup an Issuer:
 
-1. From the IBM Bluemix Dashboard, locate and click your Bluemix Node.js application to which you bound the Identity Mixer service.
+1. From the IBM Bluemix Dashboard, locate and click your Bluemix Node.js™ application to which you bound the Identity Mixer service.
 1. Within the Services section of the your application, click its Identity Mixer issuer service. The Identity Mixer Setup Console will be loaded: 
 ![](images/start_page.jpg)
 1. Choose the ISSUER role and press START SETUP.
-1. Choose a unique name for the Issuer (it must be unique within Bluemix not only your organization):          
+1. Choose a unique name for the Issuer (it must be unique within Bluemix not only your organization since it will be visible to the other applications that use Identity Mixer service):       
 ![](images/issuer_egov_setup_page.jpg)
 1. Add *Credential specification(s)* (a list of the attributes that are contained in a credential) that will be issued by your application by selecting one of the options below:
   1. Select one of the existing specifications that are non-editable:          
@@ -67,7 +71,7 @@ Ensure that you have an IBM Bluemix account and the capability to deploy applica
 
 ### Step-by-step instructions on how to setup a Verifier:
 
-1. From the IBM Bluemix Dashboard, locate and click your Bluemix Node.js application to which you bound the Identity Mixer service.
+1. From the IBM Bluemix Dashboard, locate and click your Bluemix Node.js™ application to which you bound the Identity Mixer service.
 1. Within the Services section of the your application, click its Identity Mixer issuer service. The Identity Mixer Setup Console will be loaded: 
 ![](images/start_page.jpg)
 1. Choose the VERIFIER role and press START SETUP.
@@ -94,26 +98,26 @@ Ensure that you have an IBM DevOps Services account and the capability to manage
 1. Search for "idemix" (without the quotes).
 1. Select the "idemix | issuer-verifier" project.
 1. To copy the Issuer project to your own new DevOps project:
-  1. Click FORK.
+  1. Click FORK PROJECT.
   1. Select a suitable name for your new DevOps Services project. Decide whether to make it public or private, or add features for Scrum development.
-  1. Check Deploy to Bluemix and select your Bluemix Organization and Bluemix Space. If you are advised that you require a Bluemix account, uncheck the Deploy to Bluemix option.
-  1. Click Save. You might be asked to enter a code that was sent to validate your email. In this case check your email and enter the code. After a short time you should be taken to the project you just created. It should contain a copy of the Identity Mixer Sample Application resources.
-  1. If you were not able to select the Deploy to Bluemix option:
+  1. Check Make this a Bluemix Project and select your Bluemix Organization and Bluemix Space. If you are advised that you require a Bluemix account, uncheck the Make this a Bluemix Project option.
+  1. Click CREATE. You might be asked to enter a code that was sent to validate your email. In this case check your email and enter the code. After a short time you should be taken to the project you just created. It should contain a copy of the Identity Mixer Sample Application resources.
+  1. If you were not able to select the Make this a Bluemix Project option:
        1. Ensure that you have an IBM Bluemix account and the capability to deploy applications to the IBM Bluemix environment.
-       1. Click MY STUFF.
+       1. Click MY PROJECTS.
        1. Click the project name you just created.
        1. Click the Settings 'cog' icon (Settings) at the top-right of the page.
        1. Click OPTIONS.
-       1. Check the Deploy to Bluemix option. Select the Bluemix Organization and Bluemix Space if possible.
+       1. Check the Make this a Bluemix Project option. Select the Region, Bluemix Organization and Bluemix Space if possible.
        1. Click SAVE.
-       1. Click EDIT CODE.
+1. Click EDIT CODE.
 1. Edit the manifest.yml file. If you are experienced with editing this type of file, edit it as you see fit. Otherwise:
   1. Click manifest.yml to edit its contents.
   1. Change both the host and name parameters to the unique application name (without any quotes) you chose before you started and the service name to the name of the Identity Mixer service that you have added.
   1. Save the manifest.yml file by selecting File>Save from the menu.
 1. Edit the configuration files:
-  1. Copy the content of the issuer JSON file into "public/js/issue_config.js" file.
-  1. Save the issue_config.js file by selecting File>Save from the menu.
+  1. Copy the content of the issuer JSON file into "public/js/issue_config.js" file. Save the issue_config.js file by selecting File>Save from the menu.
+  1. If you created your own specification, also in the file "public/js/issue_helper.js" on line 33, form the payload with the proper attribute values. Note that the order of the values needs to be the same as in the configuration JSON.
   1. Copy the content of the verifier JSON file into "public/js/presentation_config.js" file.
   1. Save the presentation_config.js file by selecting File>Save from the menu.
 1. Push your changes:
