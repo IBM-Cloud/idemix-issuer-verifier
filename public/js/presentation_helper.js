@@ -18,13 +18,13 @@ presentationHelper.showModalPopup = function(inner_html_code){
 	$('#modalMessage').modal('show');
 };
 
-presentationHelper.requestResourceCode = function(verifier_url, result) {
+presentationHelper.requestResourceCode = function(callback_url, data) {
 	$.ajax({
-		url: decodeURIComponent(verifier_url),
+		url: decodeURIComponent(callback_url),
 		type: 'POST',
 		cache: false,
 		async: true,
-		data: {result:result},
+		data: data,
 		success: function(result, status, xhr) {
 			$( '#msg' ).removeClass('hidden');
 			$( '#msg' ).text(result);
@@ -97,7 +97,7 @@ presentationHelper.accessResource = function(walletUrl, policyId) {
 							var ida = msg_event.data.ida;
 							if (ida) {
 								presentationHelper.ensureLoginPopupIsClosed(loginPopup);
-								presentationHelper.requestResourceCode(msg_event.data.result.verifier_url,
+								presentationHelper.requestResourceCode(msg_event.data.result.callback_url,
 									msg_event.data.result.result);
 								} else if (msg_event.data.idaCancel) {
 									$("#loginbtn").removeClass('disabled');

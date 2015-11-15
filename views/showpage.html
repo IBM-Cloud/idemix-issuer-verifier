@@ -47,25 +47,21 @@ $( document ).ready(function() {
 	'</button></div>';
 	$(element).appendTo('#policyToCheck');
 
-	if ({{isShow}}) {
-		presentationHelper.requestResourceCode(decodeURIComponent('{{verifier_url}}'),'{{result}}');
-	} else {
-		$('#policyToCheck').on('submit', function(e){
-			e.preventDefault();
-			var formData = $( this ).serialize();
-			var policyId;
-			var searchIdx = formData.search("policyRadios=");
-			if(searchIdx >= 0){
-				policyId = formData.substring(searchIdx + 13);
-			}
-			console.log(policyId);
-			var input_ctrl = $('#cwURL')[0];
-			if(input_ctrl != undefined && policyId != undefined) {
-				// Add URL checking in here
-				presentationHelper.accessResource(input_ctrl.value, policyId);
-			}
-		});
-	}
+	$('#policyToCheck').on('submit', function(e){
+		e.preventDefault();
+		var formData = $( this ).serialize();
+		var policyId;
+		var searchIdx = formData.search("policyRadios=");
+		if(searchIdx >= 0){
+			policyId = formData.substring(searchIdx + 13);
+		}
+		console.log(policyId);
+		var input_ctrl = $('#cwURL')[0];
+		if(input_ctrl != undefined && policyId != undefined) {
+			// Add URL checking in here
+			presentationHelper.accessResource(input_ctrl.value, policyId);
+		}
+	});
 });
 
 </script>

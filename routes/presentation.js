@@ -15,31 +15,27 @@ var express = require('express'),
 	router = express.Router(),
 	servicePresentation = require("../js_modules/service-presentation.js"),
 	tools = require('idmx-tools').Tools,
-	addressBook = require("../js_modules/address-book.js");
+	addressBook = require("../js_modules/address-book.js"),
+	secret = "SecretDefinesState";
 
 router.get('/', function(req, res) {
 	res.redirect('/show');
 });
 
 router.get('/show', function(req, res) {
-	var isShow = false;
-	var result;
-	if (req.query.sid) {
-		result = tools.base64decode(req.query.result);
-		console.log("result=" + JSON.stringify(result));
-		isShow = true;
-	}
+	if (req.query.sid !== undefined && req.body !== undefined) {
+		var walletAnswer = req.body;
+		var tokenStatus = JSON.parse(tools.base64decode(walletAnswer.result));
 
-	var data = {};
-	data.isShow = isShow;
-	if (isShow) {
-		var verifier_url = JSON.parse(result).verifier_url;
-		data.result = req.query.result;
-		data.verifier_url = encodeURIComponent(verifier_url);
+		// The same secret as sent in parameters
+		// of presentation request query
+		if(tokenStatus.permit && walletAnswer.verifier_url == secret) {
+			res.status(200).send("Access is granted");
+			return;
+		}
 	}
-	data.show = true;
-	data.base_url_credentialwallet = addressBook.getCredentialWalletUrl();
-	res.render('showpage', data);
+	res.status(403).send("Access is forbidden");
+
 });
 
 //save data in idemix service and get link to it
@@ -55,18 +51,9 @@ router.get('/resource/:id', function(req, res) {
 			'/show?sid=' +
 			uid;
 
-	var verifier_identity_url =
-			req.protocol +
-			'://' +
-			req.get('host') +
-			'/resource/' +
-			encodeURIComponent(policyId) +
-			'&sid=' +
-			uid;
-
 	servicePresentation.requestPresentation(
 		policyId,
-		verifier_identity_url,
+		secret,
 		callback_url,
 		function (error, result, code) {
 			if(error !== null){
@@ -76,23 +63,5 @@ router.get('/resource/:id', function(req, res) {
 			}
 		});
 });
-
-router.post('/resource/:id', function(req, res) {
-	var uid = req.query.sid;
-	var result = JSON.parse(tools.base64decode(req.body.result));
-
-	if (result.permit !== true) {
-		res.status(401).send("Wrong data");
-		return;
-	}
-
-	if(result.permit) {
-		res.status(200).send("Access is granted");
-	} else if(result.deny)	{
-		res.status(403).send("Access is forbidden");
-	}
-});
-
-
 
 module.exports = router;
