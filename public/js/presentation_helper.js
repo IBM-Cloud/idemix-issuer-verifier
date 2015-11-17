@@ -30,7 +30,7 @@ presentationHelper.requestResourceCode = function(callback_url, data) {
 			$( '#msg' ).text(result);
 		},
 		error: function(result, textStatus, errorThrown ) {
-			if(result.status == 401){
+			if(result.status == 401 || result.status == 403){
 				$( '#msg' ).removeClass('hidden');
 				$( '#msg' ).text(result);
 			} else {
@@ -98,7 +98,7 @@ presentationHelper.accessResource = function(walletUrl, policyId) {
 							if (ida) {
 								presentationHelper.ensureLoginPopupIsClosed(loginPopup);
 								presentationHelper.requestResourceCode(msg_event.data.result.callback_url,
-									msg_event.data.result.result);
+									msg_event.data.result);
 								} else if (msg_event.data.idaCancel) {
 									$("#loginbtn").removeClass('disabled');
 									presentationHelper.ensureLoginPopupIsClosed(loginPopup);

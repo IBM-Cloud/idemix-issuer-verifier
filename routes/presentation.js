@@ -19,11 +19,13 @@ var express = require('express'),
 	secret = "SecretDefinesState";
 
 router.get('/', function(req, res) {
-	res.redirect('/show');
+    res.render('showpage', {base_url_credentialwallet: addressBook.getCredentialWalletUrl()});
 });
 
-router.get('/show', function(req, res) {
-	if (req.query.sid !== undefined && req.body !== undefined) {
+router.post('/show', function(req, res) {
+	console.log("SID: " + req.query.sid);
+    console.log("Body: " + req.body);
+    if (req.query.sid !== undefined && req.body !== undefined) {
 		var walletAnswer = req.body;
 		var tokenStatus = JSON.parse(tools.base64decode(walletAnswer.result));
 
