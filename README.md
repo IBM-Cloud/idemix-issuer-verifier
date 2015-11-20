@@ -66,7 +66,9 @@ Ensure that you have an IBM Bluemix account and the capability to deploy applica
       * Add Attributes to you specification by clicking ADD ATTRIBUTE, choosing a Human Readable Name and an appropriate Data Type for each attribute.
 1. When you are done, press NEXT.
 1. After the Issuer keys are generated (this might take up to 2-3 min because of the key length,but this is only done once) a JSON file with all configuration Information will be displayed:          
-![](images/issuer_json.jpg)
+![](images/issuer_json.jpg)         
+PLEASE NOTE: This service is only available as experimental to demonstrate the technology. Please DO NOT use any real (personal) data with our service. 
+All credential specifications and issuer parameters (only the public key) are visible to the other applications that use Identity Mixer Experimental Service.
 1. You can always see this file when selecting the service from the dashboard. The details on how to use this JSON file are described in Step #7 from Section III below.
 
 ### Step-by-step instructions on how to setup a Verifier:
@@ -86,7 +88,9 @@ Ensure that you have an IBM Bluemix account and the capability to deploy applica
 ![](images/editing_policy.jpg)
 1. When you are done, press NEXT.
 1. After the presentation policies are generated a JSON file with the information about the policies will be displayed:          
-![](images/verifier_json.jpg)
+![](images/verifier_json.jpg)       
+PLEASE NOTE: This service is only available as experimental to demonstrate the technology. Please DO NOT use any real personal data with our service. 
+All presentation policies are visible to the other applications that use Identity Mixer Experimental Service.
 1. You can always see this file when selecting the service from the dashboard. The details on how to use this JSON file are described in Step #7 from Section III below.
 
 ## III. Fork and redeploy sample application 
