@@ -104,7 +104,7 @@ However, you can now configure the service to generate a new set of keys and def
 ![](images/issuer_json.jpg)         
 PLEASE NOTE: This service is only available as experimental to demonstrate the technology. Please DO NOT use any real (personal) data with our service. 
 All credential specifications and issuer parameters (only the public key) are visible to the other applications that use Identity Mixer Experimental Service.
-1. You can always see this file when selecting the service from the dashboard. The details on how to use this JSON file are described below in the Decomposition Instruction section.
+1. You can always see this file when selecting the service from the dashboard. The details on how to use this JSON file are described below in the Decomposition Instructions section.
 
 ### Verifier service configuration:
 
@@ -126,7 +126,7 @@ All credential specifications and issuer parameters (only the public key) are vi
 ![](images/verifier_json.jpg)       
 PLEASE NOTE: This service is only available as experimental to demonstrate the technology. Please DO NOT use any real personal data with our service. 
 All presentation policies are visible to the other applications that use Identity Mixer Experimental Service.
-1. You can always see this file when selecting the service from the dashboard. The details on how to use this JSON file are described in Step #7 from Section III below.
+1. You can always see this file when selecting the service from the dashboard. The details on how to use this JSON file are described below in the Decomposition Instructions section.
 
 ## Decomposition Instructions
 
