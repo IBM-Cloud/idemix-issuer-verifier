@@ -1,6 +1,6 @@
 # Identity Mixer Issuer-Verifier Overview
 
-This sample application demonstrates how the IBM Identity Mixer issuance and verification serviced can enable privacy-preserving authentication for your customers.
+This sample application demonstrates how the IBM Identity Mixer issuance and verification services can enable privacy-preserving authentication for your customers.
 
 More information and demonstration of the Identity Mixer technology is available [here](https://idemixdemo.mybluemix.net).
 
