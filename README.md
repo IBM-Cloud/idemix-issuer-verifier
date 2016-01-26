@@ -24,10 +24,15 @@ The credential wallet will be released as a mobile application in the beginning 
 ## How it Works
 
 1. Create an account with the [credential wallet sample application](https://idmx-wallet.mybluemix.net/).
-1. Go to the [app URL](https://idemix-issuer.mybluemix.net/).         
-1. Press the "Get ID card" button.       
+1. Go to the [app URL](https://idemix-issuer-verifier.mybluemix.net/).         
+1. Press "Get Subscription", choose the validity period.          
+1. After acknowledging the Privacy Policy press the Issue button.  
 1. After a credential wallet pop-up window appears, login into your credential wallet account (if you are not logged in already) and press the "Allow" button.      
-1. After the issuance is completed you can log in into your credential wallet account and check if the ID card was issued.
+1. After the issuance is completed you can log in into your credential wallet account and check if the subscription was issued.
+1. Choose "Check Access" from the menu.       
+1. Choose the presentation policy and press the "Check your access" button.
+1. After a credential wallet pop-up window appears, login into your credential wallet account (if you are not logged in already) and press the "Allow" button.      
+1. After authentication is completed the pop-up will close and you will see the success/failure message.
 
 ## Architecture Diagram
 
@@ -99,7 +104,7 @@ However, you can now configure the service to generate a new set of keys and def
 ![](images/issuer_json.jpg)         
 PLEASE NOTE: This service is only available as experimental to demonstrate the technology. Please DO NOT use any real (personal) data with our service. 
 All credential specifications and issuer parameters (only the public key) are visible to the other applications that use Identity Mixer Experimental Service.
-1. You can always see this file when selecting the service from the dashboard. The details on how to use this JSON file are described in Step #7 from Section III below.
+1. You can always see this file when selecting the service from the dashboard. The details on how to use this JSON file are described below in the Decomposition Instruction section.
 
 ### Verifier service configuration:
 
@@ -164,6 +169,7 @@ applications:
   instances: 1
   memory: 256M
   services:
+  - <service-name>
   - <service-name>
   ```
   The host you use will determinate your application url initially, e.g. `<application-host>.mybluemix.net`.
