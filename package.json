@@ -1,6 +1,11 @@
 {
-  "name": "mplex",
+  "name": "idmx-issuer-verifier",
   "version": "0.0.1",
+  "private": false,
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
 	"body-parser": "1.10.2",
 	"express": "4.2.0",
@@ -11,5 +16,22 @@
   "engines": {
 	"node": "0.10.26"
   },
-  "repository": {}
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IBM-Bluemix/idmx-issuer-verifier.git"
+  },
+  "author": [
+    {
+      "name": "Peter Kalambet",
+      "email": "peter.kalambet@ru.ibm.com"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Maria Dubovitskaya",
+      "email": "mdu@zurich.ibm.com"
+    }
+  ],
+  "license": "Apache-2.0"
 }
+
