@@ -165,9 +165,9 @@ Click BUILD & DEPLOY to verify the deployment status, and to locate the link to 
 
 5. Edit the `manifest.yml` file and change the `<application-name>` and `<application-host>` to something unique.
 
-  ```
-applications:
-- disk_quota: 1024M
+  ```     
+  applications:
+     - disk_quota: 1024M
   host: <application-host>      
   name: <application-name>
   path: .
@@ -177,7 +177,7 @@ applications:
   memory: 256M
   services:
   - <service-name>
-  - <service-name>
+  - <service-name>       
   ```
   The host you use will determinate your application url initially, e.g. `<application-host>.mybluemix.net`.
 
