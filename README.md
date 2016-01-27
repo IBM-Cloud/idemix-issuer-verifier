@@ -8,6 +8,9 @@ This sample code is released under the Apache 2.0 license (see License.txt) in t
 
 A running implementation of the sample application is already available at https://idemix-issuer-verifier.mybluemix.net/ for testing and demonstration.
 
+You can also run the issuer and verifier as 2 separate applications. 
+Please note that the anonymity and unlinkability properties are preserved even if the issuance and verification services are provided within one application.
+
 ## Application Requirements
 
 Currently the Identity Mixer Service is running as experimental and works with Node.js™ applications.      
@@ -24,11 +27,15 @@ The credential wallet will be released as a mobile application in the beginning 
 ## How it Works
 
 1. Create an account with the [credential wallet sample application](https://idmx-wallet.mybluemix.net/).
-1. Go to the [app URL](https://idemix-issuer-verifier.mybluemix.net/).         
+1. Go to the [app URL](https://idemix-issuer-verifier.mybluemix.net/).  
+
+### Issuance             
 1. Press "Get Subscription", choose the validity period.          
 1. After acknowledging the Privacy Policy press the Issue button.  
 1. After a credential wallet pop-up window appears, login into your credential wallet account (if you are not logged in already) and press the "Allow" button.      
-1. After the issuance is completed you can log in into your credential wallet account and check if the subscription was issued.
+1. After the issuance is completed you can log in into your credential wallet account and check if the subscription voucher was issued.
+
+### Verification       
 1. Choose "Check Access" from the menu.       
 1. Choose the presentation policy and press the "Check your access" button.
 1. After a credential wallet pop-up window appears, login into your credential wallet account (if you are not logged in already) and press the "Allow" button.      
@@ -47,18 +54,18 @@ Ensure that you have an IBM Bluemix account and the capability to deploy applica
 
 We discribe here 2 options for forking, configuring and deploying this application to Bluemix: 
 
-1. Automatic deployment with the Bluemix DevOps pipeline and requires only a web browser to deploy and edit the code. 
+1. Automatic deployment with the Bluemix DevOps pipeline: simple, requires only a web browser to deploy and edit the code. 
 It consists of the following steps, described in detail below:
-  1. Log in to Bluemix and create an instance of the Identity Mixer experimental service.      
-  2. Press Deploy to Bluemix button to automatically fork and deploy a sample app to Bluemix.         
+  1. Login to Bluemix and create two instances of the Identity Mixer experimental service.      
+  2. Press Deploy to Bluemix button to automatically fork and deploy the app to Bluemix.         
   3. [Optional] Configure the service.       
   4. [Optional] Edit the code to adapt the app to the service.
 
-1. Manual check out of the code and pushing it to Bluemix.
+1. Manual deployment: checking out a local copy of the code and pushing it to Bluemix.
 It consists of the following steps, described in detail below:        
   1. Install cloud-cli tool.
   1. Clone this repository and adjust the configuration files.
-  1. Log in to Bluemix and create an instance of the Identity Mixer experimental service.          
+  1. Login to Bluemix and create two instances of the Identity Mixer experimental service.          
   3. Configure the service and edit the code to adapt the app to the service.
   4. Push the code to Bluemix.
 
@@ -66,29 +73,29 @@ It consists of the following steps, described in detail below:
 
 ### Create two instances of the IBM Identity Mixer experimental service - one for issuance and one for verification:
 1. Login to IBM Bluemix.
-1. Click Use Services or APIs.
-1. Go to the Bluemix Labs catalog (you have to scroll down to the bottom ob the Bluemix catalog).
-1. Click "IBM Identity Mixer" from within the "Security" section of the BluemixLabs catalog:      
+1. Click "Use Services or APIs".
+1. Go to the Bluemix Labs catalog (you have to scroll down to the bottom of the Bluemix catalog).
+1. Click "IBM Identity Mixer" from within the "Security" section of the Bluemix Labs catalog:      
 ![](images/choose.jpg)
 1. Configure the Identity Mixer service in the "Add Service" section of the page:    
 ![](images/add.jpg)
   1. Leave the service unbound.
-  1. Type in the name "IBM Identity Mixer-issuer" for one service and "IBM Identity Mixer-verifier" for the second one.
+  1. Type in the name "IBM Identity Mixer-issuer" for one instance service and "IBM Identity Mixer-verifier" for the second one.
   1. Currently the service is provided for free, so there is no plan to select.
   1. Having ensured the TERMS were acceptable to you, click CREATE.
 
 1. Press this button to start the deployment: [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy)
 
-As you can see, the application is running now with pre-setup keys and a sample credential specification since the Identity Mixer service instance is not configured yet. 
-However, you can now configure the service to generate a new set of keys and define your own credential specification by following the instructions below. 
+As you can see, the application is running now with the sample keys and a sample credential specification since the Identity Mixer service instances are not configured yet. 
+However, you can now configure the services to generate a new set of the issuance keys, define your own credential specification(s) and access control policies by following the instructions below. 
 
 ### Issuer service configuration:
 
 1. From the IBM Bluemix Dashboard, locate and click your newly created Bluemix Node.js™ application to which you bound the Identity Mixer services.
-1. Within the Services section of the your application, click its Identity Mixer issuer service. The Identity Mixer Setup Console will be loaded: 
+1. Within the Services section of the your application, click its Identity Mixer-issuer service. The Identity Mixer Setup Console will be loaded: 
 ![](images/start_page.jpg)
 1. Choose the ISSUER role and press START SETUP.
-1. Choose a unique name for the Issuer (it must be unique within Bluemix not only your organization since it will be visible to the other applications that use Identity Mixer service):       
+1. Choose a unique name for the Issuer (it must be unique within Bluemix, not only your organization since it will be visible to the other applications that use Identity Mixer service):       
 ![](images/issuer_egov_setup_page.jpg)
 1. Add *Credential specification(s)* (a list of the attributes that are contained in a credential) that will be issued by your application by selecting one of the options below:
   1. Select one of the existing specifications that are non-editable:          
@@ -96,29 +103,29 @@ However, you can now configure the service to generate a new set of keys and def
 ![](images/issuer_egov_setup_page.jpg)
   1. OR Craft your own credential specification:         
 ![](images/issuer_movie_custom_setup_page.jpg)
-      * Choose a unique name of the Credential Specification
+      * Choose a unique name of the Credential Specification.
       * Specify a link to the image that will be an icon displayed in the user's credential wallet. You can also use the default image.
-      * Add Attributes to you specification by clicking ADD ATTRIBUTE, choosing a Human Readable Name and an appropriate Data Type for each attribute.
+      * Add Attributes to you specification by clicking ADD ATTRIBUTE, choosing a Human Readable Name and the appropriate Data Type for each attribute.
 1. When you are done, press NEXT.
-1. After the Issuer keys are generated (this might take up to 2-3 min because of the key length,but this is only done once) a JSON file with all configuration Information will be displayed:          
+1. After the Issuer keys are generated (this might take up to 2-3 min because of the key length, but this is only done once) a JSON file with all configuration information will be displayed:          
 ![](images/issuer_json.jpg)         
 PLEASE NOTE: This service is only available as experimental to demonstrate the technology. Please DO NOT use any real (personal) data with our service. 
 All credential specifications and issuer parameters (only the public key) are visible to the other applications that use Identity Mixer Experimental Service.
-1. You can always see this file when selecting the service from the dashboard. The details on how to use this JSON file are described below in the Decomposition Instructions section.
+1. After Setup is completed, you can always see this JSON file when selecting the service instance from the dashboard. The details on how to use this JSON file are described below in the Decomposition Instructions section.
 
 ### Verifier service configuration:
 
 1. From the IBM Bluemix Dashboard, locate and click your newly created Bluemix Node.js™ application to which you bound the Identity Mixer services.
-1. Within the Services section of the your application, click its Identity Mixer issuer service. The Identity Mixer Setup Console will be loaded: 
+1. Within the Services section of the your application, click its Identity Mixer-verifier service. The Identity Mixer Setup Console will be loaded: 
 ![](images/start_page.jpg)
 1. Choose the VERIFIER role and press START SETUP.
 3. Define *access control policies* (description of what a user has to prove/reveal in order to be granted access to a resource). You can choose more than one policy using any of the options below: 
  1. Select one of the existing policies that are non-editable:          
 ![](images/select_policy.jpg)          
 ![](images/predefined_policies.jpg)
-  1. OR Craft your own policy by choosing "Create New Policy":         
+  1. OR Craft your own policy by choosing CREATE NEW POLICY:         
 ![](images/create_new_policy.jpg)
-      * Specify a unique human-readable name of the policy.
+      * Specify a unique human-readable name of the policy (it must be unique within Bluemix, not only your organization since it will be visible to the other applications that use Identity Mixer service).
       * Define predicates by clicking ADD PREDICATE, choosing the credential issuer, credential type, attribute, operator, and defining a constant:        
 ![](images/editing_policy.jpg)
 1. When you are done, press NEXT.
@@ -126,7 +133,7 @@ All credential specifications and issuer parameters (only the public key) are vi
 ![](images/verifier_json.jpg)       
 PLEASE NOTE: This service is only available as experimental to demonstrate the technology. Please DO NOT use any real personal data with our service. 
 All presentation policies are visible to the other applications that use Identity Mixer Experimental Service.
-1. You can always see this file when selecting the service from the dashboard. The details on how to use this JSON file are described below in the Decomposition Instructions section.
+1. After Setup is completed, you can always see this JSON file when selecting the service instance from the dashboard. The details on how to use this JSON file are described below in the Decomposition Instructions section.
 
 ## Decomposition Instructions
 
@@ -134,12 +141,12 @@ All presentation policies are visible to the other applications that use Identit
 1. Edit the configuration files:
   1. Copy the content of the issuer JSON file into "public/js/issue_config.js" file. Save the issue_config.js file by selecting File>Save from the menu.
   1. If you created your own specification, also in the file "public/js/issue_helper.js" on line 33, form the payload with the proper attribute values. Note that the order of the values needs to be the same as in the configuration JSON.
-  1. Copy the content of the verifier JSON file into "public/js/presentation_config.js" file.
-  1. Save the presentation_config.js file by selecting File>Save from the menu.
+  1. Copy the content of the verifier JSON file into "public/js/presentation_config.js" file. Save the presentation_config.js file by selecting File>Save from the menu.
+  You can also use the policy UID from the configuration JSON file directly to call the service endpoints as it is done in "public/js/presentation_config.js".
 1. Push your changes:
   1. Go to the Git Repository by clicking the 'branch' icon (Git Repository) directly under the editing-pencil on the left of the page.
   1. In the Changed Files section, select the check boxes to the left of the files you just edited to indicate that you want to commit the changes you made.
-  1. Provide an appropriate Commit message and click COMMIT 2(3) FILES.
+  1. Provide an appropriate Commit message and click COMMIT FILES.
   1. On the OUTGOING section under the Commits for the "master" branch, click PUSH to push your changes to the Remote branch.
 1. Build and Deploy: since the deployment pipeline is already created, the deployment will start automatically after the PUSH is performed.
 Click BUILD & DEPLOY to verify the deployment status, and to locate the link to your application.
@@ -180,15 +187,14 @@ applications:
 
 9. Edit the code as described above.      
 
-6. Connect to Bluemix in the command line tool and follow the prompts to log in.
+6. Connect to Bluemix with the command line tool and follow the prompts to login.
 
   ```
   $ cf api https://api.ng.bluemix.net
   $ cf login
   ```
    
-
-10. Push your application to Bluemix. 
+10. Push your application to Bluemix from the root application folder. 
 
   ```
   $ cf push -f ./manifest.yml
