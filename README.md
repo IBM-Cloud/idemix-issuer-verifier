@@ -1,12 +1,23 @@
 # Identity Mixer Issuer-Verifier Overview
 
-This sample application demonstrates how the IBM Identity Mixer issuance and verification services can enable privacy-preserving authentication for your customers.
+This sample application demonstrates how the IBM Identity Mixer service can enable privacy-preserving authentication for your customers.
 
-More information and demonstration of the Identity Mixer technology is available [here](https://idemixdemo.mybluemix.net).
+IBM Identity Mixer for Bluemix is a protocol suite that allows for user authentication without collecting any personal data. 
+Thus, there is no personal data that needs to be protected, managed, and treated according to complex legal regulations.
+Nevertheless, service providers can rest assured that their access restrictions are fully satisfied.
+
+An Identity Mixer authentication system comprises users, issuers, and verifiers (see the Figure below).
+An issuer certifies a user's attributes in the form of a digital certificate, hereafter called *credential*.
+A user stores her credentials in a *credential wallet* application (a web-based or mobile app).
+To authenticate a user, a service provider sends her a *presentation policy* that describes which credentials the user should present to
+obtain access.
+The user lets her credential wallet derive a corresponding *presentation token* from her credentials and sends it to the service provider.
+The service provider, acting as verifier, then verifies whether the token is valid with respect to the originally sent policy.
+Considering this procedure, the Identity Mixer Bluemix service allows entities to take on the roles of an issuer or a verifier.
+
+![Identity Mixer authentication](images/idemix_authentication2.png)
 
 This sample code is released under the Apache 2.0 license (see License.txt) in the root folder. Please refer to the package.json for the dependencies. 
-
-A running implementation of the sample application is already available at https://idemix-issuer-verifier.mybluemix.net/ for testing and demonstration.
 
 You can also run the issuer and verifier as 2 separate applications. 
 Please note that the anonymity and unlinkability properties are preserved even if the issuance and verification services are provided within one application.
@@ -135,7 +146,7 @@ PLEASE NOTE: This service is only available as experimental to demonstrate the t
 All presentation policies are visible to the other applications that use Identity Mixer Experimental Service.
 1. After Setup is completed, you can always see this JSON file when selecting the service instance from the dashboard. The details on how to use this JSON file are described below in the Decomposition Instructions section.
 
-## Decomposition Instructions
+## Adapting the app for configured services
 
 1. Click EDIT CODE button that appears after the auto deployment is completed and you will see the source files of your project that was forked from this project.
 1. Edit the configuration files:
@@ -203,6 +214,8 @@ Click BUILD & DEPLOY to verify the deployment status, and to locate the link to 
 ## API documentation
 
 You can also refer to the [getting started](https://www.ng.bluemix.net/docs/services/identitymixer/index.html) and [Swagger API](http://idmx-service-media.mybluemix.net/docs/) documentation. 
+
+More information and demonstration of the Identity Mixer technology is available [here](https://idemixdemo.mybluemix.net).
 
 ## Troubleshooting
 
