@@ -68,7 +68,7 @@ We discribe here 2 options for forking, configuring and deploying this applicati
 1. Automatic deployment with the Bluemix DevOps pipeline: simple, requires only a web browser to deploy and edit the code. 
 It consists of the following steps, described in detail below:
   1. Login to Bluemix and create two instances of the Identity Mixer experimental service.      
-  2. Press Deploy to Bluemix button to automatically fork and deploy the app to Bluemix.         
+  2. Press Deploy to Bluemix button to automatically fork and deploy the app to Bluemix: [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy)        
   3. [Optional] Configure the service.       
   4. [Optional] Edit the code to adapt the app to the service.
 
@@ -82,18 +82,18 @@ It consists of the following steps, described in detail below:
 
 ## Automatic Deployment to Bluemix
 
-### Create two instances of the IBM Identity Mixer experimental service - one for issuance and one for verification:
-1. Login to IBM Bluemix.
-1. Click "Use Services or APIs".
-1. Go to the Bluemix Labs catalog (you have to scroll down to the bottom of the Bluemix catalog).
-1. Click "IBM Identity Mixer" from within the "Security" section of the Bluemix Labs catalog:      
+1. Create two instances of the IBM Identity Mixer experimental service - one for issuance and one for verification:
+  1. Login to IBM Bluemix.
+  1. Click "Use Services or APIs".
+  1. Go to the Bluemix Labs catalog (you have to scroll down to the bottom of the Bluemix catalog).
+  1. Click "IBM Identity Mixer" from within the "Security" section of the Bluemix Labs catalog:      
 ![](images/choose.jpg)
-1. Configure the Identity Mixer service in the "Add Service" section of the page:    
+  1. Configure the Identity Mixer service in the "Add Service" section of the page:    
 ![](images/add.jpg)
-  1. Leave the service unbound.
-  1. Type in the name "IBM Identity Mixer-issuer" for one instance service and "IBM Identity Mixer-verifier" for the second one.
-  1. Currently the service is provided for free, so there is no plan to select.
-  1. Having ensured the TERMS were acceptable to you, click CREATE.
+     1. Leave the service unbound.
+     1. Type in the name "IBM Identity Mixer-issuer" for one instance service and "IBM Identity Mixer-verifier" for the second one.
+     1. Currently the service is provided for free, so there is no plan to select.
+     1. Having ensured the TERMS were acceptable to you, click CREATE.
 
 1. Press this button to start the deployment: [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy)
 
