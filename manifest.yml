@@ -7,3 +7,6 @@ applications:
   domain: mybluemix.net
   instances: 1
   memory: 128M
+services:
+- IBM Identity Mixer-issuer
+- IBM Identity Mixer-verifier
