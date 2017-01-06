@@ -67,7 +67,7 @@ var services = JSON.parse(process.env.VCAP_SERVICES || "{}");
 var host = (process.env.VCAP_APP_HOST || 'localhost');
 
 // The port on the DEA for communication with the application:
-var port = (process.env.VCAP_APP_PORT || 3005);
+var port = (process.env.PORT || 3005);
 
 // Start server
 app.listen(port, host, function(){
